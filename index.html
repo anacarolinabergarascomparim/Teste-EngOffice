@@ -4,376 +4,406 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EngOffice - Ambientes Corporativos</title>
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'eng-green': '#344534',
-                        'eng-dark': '#1a1f22',
-                        'eng-gray-light': '#f8f9fa',
-                        'eng-gold': '#b4a06d'
+                        brand: {
+                            DEFAULT: '#465b3c', // Verde oliva principal
+                            dark: '#1b2118',    // Fundo escuro (stats, footer)
+                            light: '#f4f5f2',   // Fundo claro (hero, cards)
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Ajustes finos */
-        .text-balance {
-            text-wrap: balance;
+        /* Estilos adicionais personalizados para pequenos ajustes */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased overflow-x-hidden">
+<body class="font-sans text-gray-800 bg-white">
 
-    <!-- HEADER -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Removida a altura fixa (h-20) e adicionado py-4 para o cabeçalho se adaptar ao tamanho da logo -->
-            <div class="flex justify-between items-center py-4">
-                <!-- Logo: Tamanho aumentado de h-16 para h-24 no mobile e h-32 no desktop -->
-                <a href="#" class="flex items-center">
-                    <img src="logo.png" alt="EngOffice" class="h-24 md:h-32 w-auto object-contain mix-blend-multiply" onerror="this.src='https://placehold.co/250x100/transparent/344534?text=Sua+Logo+Aqui'">
-                </a>
-
-                <!-- Nav (Desktop) -->
-                <nav class="hidden lg:flex space-x-8 h-full">
-                    <a href="#" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">INÍCIO</a>
-                    <!-- Active Link -->
-                    <a href="#" class="inline-flex items-center px-1 pt-1 border-b-2 border-eng-green text-sm font-bold text-gray-900">OBRAS CORPORATIVAS</a>
-                    <a href="#" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">SOLUÇÕES</a>
-                    <a href="#" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">PROJETOS</a>
-                    <a href="#" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">CATÁLOGO</a>
-                    <a href="#" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">QUEM SOMOS</a>
-                    <a href="#" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">CONTATO</a>
-                </nav>
-
-                <!-- CTA Button -->
-                <div class="hidden md:flex">
-                    <a href="#" class="inline-flex items-center justify-center px-4 py-2 border border-eng-green text-sm font-bold rounded text-eng-green hover:bg-eng-green hover:text-white transition-colors duration-300">
-                        <i class="ph ph-whatsapp-logo text-lg mr-2"></i>
-                        FALE NO WHATSAPP
-                    </a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="flex items-center lg:hidden">
-                    <button type="button" class="text-gray-500 hover:text-gray-900 focus:outline-none">
-                        <i class="ph ph-list text-3xl"></i>
-                    </button>
+    <!-- HEADER / NAVBAR -->
+    <header class="w-full bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-2 cursor-pointer">
+                <i class="ph ph-buildings text-4xl text-brand"></i>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold leading-tight text-gray-900 tracking-tight">EngOffice</span>
+                    <span class="text-[10px] font-semibold text-gray-500 tracking-widest uppercase">Ambientes Corporativos</span>
                 </div>
             </div>
+
+            <!-- Navigation (Desktop) -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-600">
+                <a href="#" class="hover:text-brand transition-colors">INÍCIO</a>
+                <a href="#" class="hover:text-brand transition-colors text-brand border-b-2 border-brand pb-1">OBRAS CORPORATIVAS</a>
+                <a href="#" class="hover:text-brand transition-colors">SOLUÇÕES</a>
+                <a href="#" class="hover:text-brand transition-colors">PROJETOS</a>
+                <a href="#" class="hover:text-brand transition-colors">CATÁLOGO</a>
+                <a href="#" class="hover:text-brand transition-colors">QUEM SOMOS</a>
+                <a href="#" class="hover:text-brand transition-colors">CONTATO</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <a href="#" class="hidden md:flex items-center gap-2 bg-[#465b3c] hover:bg-[#384830] transition-colors text-white text-xs font-bold py-3 px-5 rounded-sm uppercase tracking-wide">
+                <i class="ph ph-whatsapp text-lg"></i>
+                Fale no WhatsApp
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-gray-800 text-2xl">
+                <i class="ph ph-list"></i>
+            </button>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section class="bg-eng-gray-light relative">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row">
-            <!-- Text Content -->
-            <div class="w-full md:w-1/2 py-16 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Obras Corporativas Turnkey</p>
-                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6 text-balance">
-                    Ambientes corporativos completos.<br>
-                    Do projeto à entrega, cuidamos de tudo.
-                </h2>
-                <p class="text-base text-gray-600 mb-8 max-w-lg">
-                    Soluções completas em ambientes corporativos no modelo Turnkey. Do planejamento à entrega, unimos design, funcionalidade e eficiência para transformar espaços e impulsionar resultados.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-bold rounded text-white bg-eng-green hover:bg-opacity-90 transition-colors duration-300">
-                        <i class="ph ph-whatsapp-logo text-lg mr-2"></i>
-                        SOLICITE ORÇAMENTO
-                    </a>
-                    <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-sm font-bold rounded text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-300">
-                        FALAR COM ESPECIALISTA
-                    </a>
-                </div>
+    <section class="w-full flex flex-col md:flex-row min-h-[600px] bg-brand-light">
+        <!-- Text Content -->
+        <div class="w-full md:w-[45%] flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16">
+            <span class="text-xs font-bold tracking-widest text-gray-500 mb-4 uppercase">Obras Corporativas Turnkey</span>
+            <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.1] mb-6">
+                Ambientes corporativos completos.<br>
+                <span class="text-brand">Do projeto à entrega, cuidamos de tudo.</span>
+            </h1>
+            <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8 max-w-lg">
+                Soluções completas em ambientes corporativos no modelo Turnkey. Do planejamento à entrega, unimos design, funcionalidade e eficiência para transformar espaços e impulsionar resultados.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#" class="flex items-center justify-center gap-2 bg-[#465b3c] text-white text-xs font-bold py-3 px-6 rounded-sm uppercase hover:bg-[#384830] transition">
+                    <i class="ph ph-whatsapp text-lg"></i>
+                    Solicite um Orçamento
+                </a>
+                <a href="#" class="flex items-center justify-center text-gray-700 bg-transparent border border-gray-400 text-xs font-bold py-3 px-6 rounded-sm uppercase hover:bg-gray-100 transition">
+                    Falar com Especialista
+                </a>
             </div>
-            <!-- Image -->
-            <div class="w-full md:w-1/2 h-64 md:h-auto min-h-[400px] relative">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="Escritório Corporativo Moderno" class="absolute inset-0 w-full h-full object-cover">
-            </div>
+        </div>
+        <!-- Image Content -->
+        <div class="w-full md:w-[55%] min-h-[300px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');">
         </div>
     </section>
 
     <!-- STATS SECTION -->
-    <section class="bg-eng-dark text-white py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-center divide-x divide-gray-700">
-                <div class="flex flex-col items-center justify-center px-4">
-                    <div class="flex items-center gap-3 mb-1">
-                        <i class="ph ph-buildings text-3xl text-eng-green"></i>
-                        <span class="text-3xl font-bold">250</span>
-                    </div>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Obras Construídas</span>
+    <section class="bg-[#1b2118] text-white py-12">
+        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8 text-center divide-x divide-gray-700/50">
+            <div class="flex items-center justify-center gap-4">
+                <i class="ph ph-buildings text-4xl text-brand-light opacity-80"></i>
+                <div class="text-left">
+                    <span class="block text-3xl font-bold">250</span>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Obras Entregues</span>
                 </div>
-                <div class="flex flex-col items-center justify-center px-4">
-                    <div class="flex items-center gap-3 mb-1">
-                        <i class="ph ph-users text-3xl text-eng-green"></i>
-                        <span class="text-3xl font-bold">132</span>
-                    </div>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Empresas Atendidas</span>
+            </div>
+            <div class="flex items-center justify-center gap-4">
+                <i class="ph ph-users text-4xl text-brand-light opacity-80"></i>
+                <div class="text-left">
+                    <span class="block text-3xl font-bold">132</span>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Empresas Atendidas</span>
                 </div>
-                <div class="flex flex-col items-center justify-center px-4">
-                    <div class="flex items-center gap-3 mb-1">
-                        <i class="ph ph-ruler text-3xl text-eng-green"></i>
-                        <span class="text-3xl font-bold">90 MIL</span> <span class="text-sm">m²</span>
-                    </div>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Construídos</span>
+            </div>
+            <div class="flex items-center justify-center gap-4">
+                <i class="ph ph-ruler text-4xl text-brand-light opacity-80"></i>
+                <div class="text-left">
+                    <span class="block text-3xl font-bold">90 MIL <span class="text-xl">m²</span></span>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Mobiliados</span>
                 </div>
-                <div class="flex flex-col items-center justify-center px-4">
-                    <div class="flex items-center gap-3 mb-1">
-                        <i class="ph ph-map-pin text-3xl text-eng-green"></i>
-                        <span class="text-3xl font-bold">16</span>
-                    </div>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Estados Atendidos</span>
+            </div>
+            <div class="flex items-center justify-center gap-4">
+                <i class="ph ph-map-pin text-4xl text-brand-light opacity-80"></i>
+                <div class="text-left">
+                    <span class="block text-3xl font-bold">16</span>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Estados Atendidos</span>
                 </div>
-                <div class="flex flex-col items-center justify-center px-4 border-none md:border-solid">
-                    <div class="flex items-center gap-3 mb-1">
-                        <i class="ph ph-star text-3xl text-eng-green"></i>
-                        <span class="text-3xl font-bold">17</span>
-                    </div>
-                    <span class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Anos de Experiência</span>
+            </div>
+            <div class="flex items-center justify-center gap-4 border-none md:border-solid">
+                <i class="ph ph-star text-4xl text-brand-light opacity-80"></i>
+                <div class="text-left">
+                    <span class="block text-3xl font-bold">17</span>
+                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Anos de Experiência</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- COMO FUNCIONA SECTION -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-center text-sm font-bold text-gray-900 uppercase tracking-widest mb-12">Como Funciona o Turnkey EngOffice</h3>
+    <section class="py-20 bg-white">
+        <div class="max-w-[1200px] mx-auto px-6 text-center">
+            <h2 class="text-sm font-bold tracking-widest text-gray-800 uppercase mb-16">Como Funciona o Turnkey EngOffice</h2>
             
-            <div class="flex flex-col md:flex-row justify-between items-start relative">
-                
-                <!-- Line connecting steps (Desktop only) -->
-                <div class="hidden md:block absolute top-8 left-10 right-10 h-0.5 bg-gray-200 z-0"></div>
+            <div class="flex flex-col md:flex-row items-start justify-between relative gap-6 md:gap-0">
+                <!-- Linha conectora desktop -->
+                <div class="hidden md:block absolute top-[40px] left-[8%] right-[8%] h-[1px] bg-gray-300 -z-10"></div>
 
                 <!-- Step 1 -->
-                <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/6 mb-8 md:mb-0 px-2">
-                    <div class="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center mb-4">
-                        <i class="ph ph-chat-circle-text text-2xl text-gray-700"></i>
+                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
+                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
+                        <i class="ph ph-chat-circle-dots text-3xl"></i>
                     </div>
-                    <span class="text-xs font-bold text-gray-900 mb-1">01</span>
-                    <h4 class="text-sm font-bold text-gray-900 mb-2">BRIEFING</h4>
-                    <p class="text-xs text-gray-500">Entendemos as necessidades e os objetivos do projeto.</p>
+                    <span class="text-brand font-bold text-lg mb-1">01</span>
+                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Briefing</h3>
+                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Entendemos as necessidades e os objetivos do projeto.</p>
                 </div>
 
-                <!-- Arrow Icon (Desktop) -->
-                <div class="hidden md:flex mt-6 text-gray-300 relative z-10"><i class="ph ph-caret-right text-xl"></i></div>
+                <!-- Arrow Icon Desktop -->
+                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
 
                 <!-- Step 2 -->
-                <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/6 mb-8 md:mb-0 px-2">
-                    <div class="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center mb-4">
-                        <i class="ph ph-map-trifold text-2xl text-gray-700"></i>
+                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
+                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
+                        <i class="ph ph-clipboard-text text-3xl"></i>
                     </div>
-                    <span class="text-xs font-bold text-gray-900 mb-1">02</span>
-                    <h4 class="text-sm font-bold text-gray-900 mb-2">PLANEJAMENTO</h4>
-                    <p class="text-xs text-gray-500">Desenvolvemos layout, soluções e orçamento personalizado.</p>
+                    <span class="text-brand font-bold text-lg mb-1">02</span>
+                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Planejamento</h3>
+                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Desenvolvemos layout, soluções e orçamento personalizado.</p>
                 </div>
 
-                <div class="hidden md:flex mt-6 text-gray-300 relative z-10"><i class="ph ph-caret-right text-xl"></i></div>
+                <!-- Arrow Icon Desktop -->
+                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
 
                 <!-- Step 3 -->
-                <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/6 mb-8 md:mb-0 px-2">
-                    <div class="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center mb-4">
-                        <i class="ph ph-thumbs-up text-2xl text-gray-700"></i>
+                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
+                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
+                        <i class="ph ph-file-check text-3xl"></i>
                     </div>
-                    <span class="text-xs font-bold text-gray-900 mb-1">03</span>
-                    <h4 class="text-sm font-bold text-gray-900 mb-2">APROVAÇÃO</h4>
-                    <p class="text-xs text-gray-500">Ajustamos os detalhes e aprovamos o projeto junto com você.</p>
+                    <span class="text-brand font-bold text-lg mb-1">03</span>
+                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Aprovação</h3>
+                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Ajustamos os detalhes e aprovamos o projeto junto com você.</p>
                 </div>
 
-                <div class="hidden md:flex mt-6 text-gray-300 relative z-10"><i class="ph ph-caret-right text-xl"></i></div>
+                <!-- Arrow Icon Desktop -->
+                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
 
                 <!-- Step 4 -->
-                <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/6 mb-8 md:mb-0 px-2">
-                    <div class="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center mb-4">
-                        <i class="ph ph-hard-hat text-2xl text-gray-700"></i>
+                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
+                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
+                        <i class="ph ph-hard-hat text-3xl"></i>
                     </div>
-                    <span class="text-xs font-bold text-gray-900 mb-1">04</span>
-                    <h4 class="text-sm font-bold text-gray-900 mb-2">EXECUÇÃO</h4>
-                    <p class="text-xs text-gray-500">Gerenciamos toda a obra, fornecedores e montagens com equipe própria.</p>
+                    <span class="text-brand font-bold text-lg mb-1">04</span>
+                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Execução</h3>
+                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Gerenciamos toda a obra, fornecedores e instalações com equipe própria.</p>
                 </div>
 
-                <div class="hidden md:flex mt-6 text-gray-300 relative z-10"><i class="ph ph-caret-right text-xl"></i></div>
+                <!-- Arrow Icon Desktop -->
+                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
 
                 <!-- Step 5 -->
-                <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/6 mb-8 md:mb-0 px-2">
-                    <div class="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center mb-4">
-                        <i class="ph ph-check-circle text-2xl text-gray-700"></i>
+                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
+                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
+                        <i class="ph ph-check-circle text-3xl"></i>
                     </div>
-                    <span class="text-xs font-bold text-gray-900 mb-1">05</span>
-                    <h4 class="text-sm font-bold text-gray-900 mb-2">ENTREGA</h4>
-                    <p class="text-xs text-gray-500">Entregamos o ambiente 100% pronto para uso, com total garantia.</p>
+                    <span class="text-brand font-bold text-lg mb-1">05</span>
+                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Entrega</h3>
+                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Entregamos o ambiente 100% pronto para uso, com total garantia.</p>
                 </div>
 
-                <div class="hidden md:flex mt-6 text-gray-300 relative z-10"><i class="ph ph-caret-right text-xl"></i></div>
+                <!-- Arrow Icon Desktop -->
+                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
 
                 <!-- Step 6 -->
-                <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/6 px-2">
-                    <div class="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center mb-4">
-                        <i class="ph ph-headset text-2xl text-gray-700"></i>
+                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
+                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
+                        <i class="ph ph-headset text-3xl"></i>
                     </div>
-                    <span class="text-xs font-bold text-gray-900 mb-1">06</span>
-                    <h4 class="text-sm font-bold text-gray-900 mb-2">PÓS-ENTREGA</h4>
-                    <p class="text-xs text-gray-500">Suporte e assistência contínua para garantir a sua tranquilidade.</p>
+                    <span class="text-brand font-bold text-lg mb-1">06</span>
+                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Pós-Entrega</h3>
+                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Suporte e assistência contínua para garantir a sua tranquilidade.</p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO SECTION -->
-    <section class="py-16 bg-eng-gray-light border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-center text-sm font-bold text-gray-900 uppercase tracking-widest mb-10">Obras Corporativas Realizadas</h3>
+    <!-- OBRAS REALIZADAS SECTION -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <h2 class="text-sm font-bold tracking-widest text-gray-800 uppercase text-center mb-12">Obras Corporativas Realizadas</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6">
                 <!-- Card 1 -->
-                <div class="bg-white rounded overflow-hidden shadow-sm border border-gray-100 flex flex-col">
-                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2070&auto=format&fit=crop" alt="Escritório" class="w-full h-48 object-cover">
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h4 class="font-bold text-gray-900 text-sm mb-1">Escritório Corporativo</h4>
-                        <p class="text-xs text-gray-500 mb-3">Empresa de Tecnologia</p>
-                        <div class="flex items-center text-xs text-gray-400 mb-4 mt-auto">
-                            <i class="ph ph-map-pin mr-1"></i> São Paulo - SP
+                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=80" alt="Escritório Corporativo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <div class="flex items-center gap-2 mb-2 text-brand">
+                            <i class="ph ph-buildings"></i>
+                            <h3 class="font-bold text-sm text-gray-900">Escritório Corporativo</h3>
                         </div>
-                        <a href="#" class="inline-block text-center border border-gray-300 text-xs font-bold py-2 px-4 rounded text-gray-700 hover:bg-gray-50 transition-colors">VER PROJETO</a>
+                        <p class="text-xs text-gray-500 mb-1">Empresa de Tecnologia</p>
+                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> São Paulo - SP</p>
+                        <div class="mt-auto">
+                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-white rounded overflow-hidden shadow-sm border border-gray-100 flex flex-col">
-                    <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=2070&auto=format&fit=crop" alt="Sala de Reunião" class="w-full h-48 object-cover">
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h4 class="font-bold text-gray-900 text-sm mb-1">Sala de Reunião Executiva</h4>
-                        <p class="text-xs text-gray-500 mb-3">Instituição Financeira</p>
-                        <div class="flex items-center text-xs text-gray-400 mb-4 mt-auto">
-                            <i class="ph ph-map-pin mr-1"></i> Rio de Janeiro - RJ
+                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=600&q=80" alt="Sala de Reunião" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <div class="flex items-center gap-2 mb-2 text-brand">
+                            <i class="ph ph-users-three"></i>
+                            <h3 class="font-bold text-sm text-gray-900">Sala de Reunião Executiva</h3>
                         </div>
-                        <a href="#" class="inline-block text-center border border-gray-300 text-xs font-bold py-2 px-4 rounded text-gray-700 hover:bg-gray-50 transition-colors">VER PROJETO</a>
+                        <p class="text-xs text-gray-500 mb-1">Instituição Financeira</p>
+                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> Rio de Janeiro - RJ</p>
+                        <div class="mt-auto">
+                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-white rounded overflow-hidden shadow-sm border border-gray-100 flex flex-col">
-                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop" alt="Área de Colaboração" class="w-full h-48 object-cover">
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h4 class="font-bold text-gray-900 text-sm mb-1">Área de Colaboração</h4>
-                        <p class="text-xs text-gray-500 mb-3">Agência de Marketing</p>
-                        <div class="flex items-center text-xs text-gray-400 mb-4 mt-auto">
-                            <i class="ph ph-map-pin mr-1"></i> Curitiba - PR
+                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Área de Colaboração" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <div class="flex items-center gap-2 mb-2 text-brand">
+                            <i class="ph ph-coffee"></i>
+                            <h3 class="font-bold text-sm text-gray-900">Área de Colaboração</h3>
                         </div>
-                        <a href="#" class="inline-block text-center border border-gray-300 text-xs font-bold py-2 px-4 rounded text-gray-700 hover:bg-gray-50 transition-colors">VER PROJETO</a>
+                        <p class="text-xs text-gray-500 mb-1">Agência de Marketing</p>
+                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> Curitiba - PR</p>
+                        <div class="mt-auto">
+                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="bg-white rounded overflow-hidden shadow-sm border border-gray-100 flex flex-col">
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?q=80&w=1932&auto=format&fit=crop" alt="Recepção" class="w-full h-48 object-cover">
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h4 class="font-bold text-gray-900 text-sm mb-1">Recepção Corporativa</h4>
-                        <p class="text-xs text-gray-500 mb-3">Indústria de Alimentos</p>
-                        <div class="flex items-center text-xs text-gray-400 mb-4 mt-auto">
-                            <i class="ph ph-map-pin mr-1"></i> Belo Horizonte - MG
+                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=600&q=80" alt="Auditório" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <div class="flex items-center gap-2 mb-2 text-brand">
+                            <i class="ph ph-presentation-chart"></i>
+                            <h3 class="font-bold text-sm text-gray-900">Auditório Corporativo</h3>
                         </div>
-                        <a href="#" class="inline-block text-center border border-gray-300 text-xs font-bold py-2 px-4 rounded text-gray-700 hover:bg-gray-50 transition-colors">VER PROJETO</a>
+                        <p class="text-xs text-gray-500 mb-1">Empresa de Educação</p>
+                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> Porto Alegre - RS</p>
+                        <div class="mt-auto">
+                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 flex items-center justify-center z-10">
+                             <div class="text-white text-3xl opacity-50"><i class="ph ph-leaf"></i> logo</div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=600&q=80" alt="Recepção" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 brightness-75">
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <div class="flex items-center gap-2 mb-2 text-brand">
+                            <i class="ph ph-door"></i>
+                            <h3 class="font-bold text-sm text-gray-900">Recepção Corporativa</h3>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-1">Indústria de Alimentos</p>
+                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> Belo Horizonte - MG</p>
+                        <div class="mt-auto">
+                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-10 text-center">
-                <a href="#" class="inline-block bg-eng-green text-white text-xs font-bold py-3 px-8 rounded hover:bg-opacity-90 transition-colors">VER TODAS AS OBRAS</a>
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-block bg-[#465b3c] hover:bg-[#384830] transition text-white text-xs font-bold py-3 px-8 rounded-sm uppercase tracking-wider">Ver Todas as Obras</a>
             </div>
         </div>
     </section>
 
-    <!-- VIDEOS SECTION -->
-    <section class="bg-eng-dark py-12 border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-8 items-center">
-            
-            <!-- Left Content -->
-            <div class="w-full lg:w-1/3 text-white">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Conheça Nossas Obras</p>
-                <h3 class="text-2xl font-bold mb-4 text-balance">Assista aos vídeos<br>e conheça ambientes<br>que transformamos.</h3>
-                <p class="text-xs text-gray-400 mb-6 max-w-sm">
-                    Cada projeto é único. Nossa essência, pensada para gerar bem-estar, produtividade e resultados.
-                </p>
-                <a href="#" class="inline-flex items-center text-xs font-bold text-white hover:text-eng-green transition-colors">
-                    <i class="ph ph-play-circle text-lg mr-2"></i> ASSISTIR TODOS OS VÍDEOS
+    <!-- VÍDEOS SECTION -->
+    <section class="bg-[#121613] text-white py-20">
+        <div class="max-w-[1400px] mx-auto px-6 flex flex-col lg:flex-row gap-12 items-center">
+            <!-- Text -->
+            <div class="w-full lg:w-1/4">
+                <span class="text-[10px] text-brand-light uppercase tracking-widest font-bold mb-3 block">Conheça Nossas Obras</span>
+                <h2 class="text-2xl lg:text-3xl font-bold mb-4 leading-tight">Assista aos vídeos e conheça ambientes que transformamos.</h2>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed">Cada projeto é único. Cada detalhe, pensado para gerar bem-estar, produtividade e resultados.</p>
+                <a href="#" class="flex items-center gap-2 text-xs font-bold uppercase hover:text-brand transition tracking-wider">
+                    <i class="ph ph-play-circle text-2xl"></i> Assistir Todos os Vídeos
                 </a>
             </div>
 
-            <!-- Right Videos Grid -->
-            <div class="w-full lg:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Videos Grid -->
+            <div class="w-full lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <!-- Video 1 -->
-                <div class="relative group cursor-pointer aspect-video bg-gray-800 overflow-hidden rounded">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Thumbnail" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
+                <div class="relative group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="Video 1" class="w-full h-40 object-cover brightness-75 group-hover:brightness-100 transition duration-300">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center border border-white">
-                            <i class="ph ph-play text-white text-lg ml-1"></i>
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 group-hover:scale-110 transition">
+                            <i class="ph-fill ph-play text-lg ml-1"></i>
                         </div>
                     </div>
-                    <div class="absolute bottom-2 left-3">
-                        <p class="text-[10px] text-white font-bold">Escritório Corporativo</p>
-                        <p class="text-[8px] text-gray-300">São Paulo - SP</p>
+                    <div class="mt-3">
+                        <h4 class="text-xs font-bold">Escritório Corporativo</h4>
+                        <p class="text-[10px] text-gray-400">São Paulo - SP</p>
                     </div>
                 </div>
                 <!-- Video 2 -->
-                <div class="relative group cursor-pointer aspect-video bg-gray-800 overflow-hidden rounded">
-                    <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=800&auto=format&fit=crop" alt="Thumbnail" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
+                <div class="relative group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1505409859467-3a796fd5798e?auto=format&fit=crop&w=400&q=80" alt="Video 2" class="w-full h-40 object-cover brightness-75 group-hover:brightness-100 transition duration-300">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center border border-white">
-                            <i class="ph ph-play text-white text-lg ml-1"></i>
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 group-hover:scale-110 transition">
+                            <i class="ph-fill ph-play text-lg ml-1"></i>
                         </div>
                     </div>
-                    <div class="absolute bottom-2 left-3">
-                        <p class="text-[10px] text-white font-bold">Auditório Corporativo</p>
-                        <p class="text-[8px] text-gray-300">Porto Alegre - RS</p>
+                    <div class="mt-3">
+                        <h4 class="text-xs font-bold">Auditório Corporativo</h4>
+                        <p class="text-[10px] text-gray-400">Porto Alegre - RS</p>
                     </div>
                 </div>
                 <!-- Video 3 -->
-                <div class="relative group cursor-pointer aspect-video bg-gray-800 overflow-hidden rounded">
-                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=800&auto=format&fit=crop" alt="Thumbnail" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
+                <div class="relative group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Video 3" class="w-full h-40 object-cover brightness-75 group-hover:brightness-100 transition duration-300">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center border border-white">
-                            <i class="ph ph-play text-white text-lg ml-1"></i>
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 group-hover:scale-110 transition">
+                            <i class="ph-fill ph-play text-lg ml-1"></i>
                         </div>
                     </div>
-                    <div class="absolute bottom-2 left-3">
-                        <p class="text-[10px] text-white font-bold">Área de Colaboração</p>
-                        <p class="text-[8px] text-gray-300">Curitiba - PR</p>
+                    <div class="mt-3">
+                        <h4 class="text-xs font-bold">Área de Colaboração</h4>
+                        <p class="text-[10px] text-gray-400">Curitiba - PR</p>
                     </div>
                 </div>
                 <!-- Video 4 -->
-                <div class="relative group cursor-pointer aspect-video bg-gray-800 overflow-hidden rounded">
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?q=80&w=800&auto=format&fit=crop" alt="Thumbnail" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
+                <div class="relative group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=400&q=80" alt="Video 4" class="w-full h-40 object-cover brightness-75 group-hover:brightness-100 transition duration-300">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center border border-white">
-                            <i class="ph ph-play text-white text-lg ml-1"></i>
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 group-hover:scale-110 transition">
+                            <i class="ph-fill ph-play text-lg ml-1"></i>
                         </div>
                     </div>
-                    <div class="absolute bottom-2 left-3">
-                        <p class="text-[10px] text-white font-bold">Recepção Corporativa</p>
-                        <p class="text-[8px] text-gray-300">Belo Horizonte - MG</p>
+                    <div class="mt-3">
+                        <h4 class="text-xs font-bold">Recepção Corporativa</h4>
+                        <p class="text-[10px] text-gray-400">Belo Horizonte - MG</p>
                     </div>
                 </div>
             </div>
@@ -381,190 +411,168 @@
     </section>
 
     <!-- CLIENTS SECTION -->
-    <section class="py-8 bg-white border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-6">Empresas que confiam na EngOffice</h3>
-            <!-- Placeholder for logos, using text blocks to represent them visually similar to the mockup -->
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70">
-                <span class="text-xl font-black tracking-tighter text-blue-800">ambev</span>
-                <span class="text-lg font-bold text-red-600 flex items-center gap-1"><i class="ph ph-square-logo text-2xl"></i> Bradesco</span>
-                <span class="text-xl font-bold text-purple-600 italic">vivo <i class="ph ph-user-circle text-sm"></i></span>
-                <span class="text-lg font-bold text-green-600">stone</span>
-                <span class="text-lg font-black text-gray-800 border-2 border-gray-800 px-1">RD <span class="text-[10px] block text-center leading-none">SAÚDE</span></span>
-                <span class="text-xl font-bold text-blue-900 tracking-wider">TOTVS</span>
-                <span class="text-lg font-bold text-green-500 flex items-center"><i class="ph ph-car-profile mr-1"></i> Localiza</span>
-                <span class="text-lg font-bold text-green-700">Sicredi</span>
-                <span class="text-xl font-black text-green-600">MRV</span>
-                <span class="text-sm font-bold text-gray-800 border rounded-full px-2 py-1 flex items-center"><i class="ph ph-globe mr-1"></i> VFS GLOBAL</span>
-                <span class="text-xl font-bold text-blue-400">KUMON</span>
+    <section class="py-12 bg-white border-b border-gray-100">
+        <div class="max-w-[1400px] mx-auto px-6 text-center">
+            <h2 class="text-xs font-bold tracking-widest text-gray-500 uppercase mb-8">Empresas que confiam na EngOffice</h2>
+            
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+                <!-- Simulando as logos com texto estlizado e cores originais para o hover -->
+                <span class="text-xl font-bold text-[#004b93]">ambev</span>
+                <span class="text-xl font-bold text-[#cc092f] flex items-center gap-1"><div class="w-3 h-3 bg-[#cc092f] rounded-sm"></div> Bradesco</span>
+                <span class="text-2xl font-bold text-[#660099]">vivo</span>
+                <span class="text-xl font-bold text-[#1a8e48]">stone</span>
+                <span class="text-xl font-bold text-[#006e40]">RD Saúde</span>
+                <span class="text-xl font-bold text-[#004e9a]">TOTVS</span>
+                <span class="text-xl font-bold text-[#00a345] italic">Localiza</span>
+                <span class="text-xl font-bold text-[#00a651]">Sicredi</span>
+                <span class="text-xl font-bold text-[#006341]">MRV</span>
+                <span class="text-lg font-bold text-[#000000] border border-black rounded-full px-2">vfs. GLOBAL</span>
+                <span class="text-xl font-bold text-[#00a4e4]">KUMON</span>
             </div>
         </div>
     </section>
 
     <!-- BENEFITS SECTION -->
-    <section class="flex flex-col md:flex-row">
-        <!-- Left: Green Content -->
-        <div class="w-full md:w-1/2 bg-eng-green text-white py-16 px-8 lg:px-16 flex flex-col justify-center">
-            <p class="text-[10px] font-bold text-gray-300 uppercase tracking-widest mb-4">Por que escolher a EngOffice?</p>
-            <h2 class="text-3xl lg:text-4xl font-bold mb-12 text-balance leading-tight">
-                Mais do que obras,<br>
-                entregamos soluções que<br>
-                geram resultados.
+    <section class="w-full flex flex-col md:flex-row">
+        <!-- Left Side -->
+        <div class="w-full md:w-1/2 bg-[#36482f] text-white p-12 md:p-20 flex flex-col justify-center">
+            <span class="text-[10px] font-bold tracking-widest uppercase text-brand-light/80 mb-4">Por que escolher a EngOffice?</span>
+            <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-12">
+                Mais do que obras,<br>entregamos soluções que<br>geram resultados.
             </h2>
-            
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-4">
-                <!-- Benefit 1 -->
-                <div>
-                    <div class="w-10 h-10 rounded-full border border-gray-400 flex items-center justify-center mb-3">
-                        <i class="ph ph-clock text-xl text-eng-gold"></i>
-                    </div>
-                    <h4 class="text-xs font-bold">Cumprimento de prazo<br><span class="font-normal text-gray-300">é prioridade.</span></h4>
+
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-6">
+                <div class="flex flex-col gap-2">
+                    <i class="ph ph-users text-3xl text-[#a3b89b]"></i>
+                    <p class="text-xs font-semibold">Equipe própria<br>e especializada</p>
                 </div>
-                <!-- Benefit 2 -->
-                <div>
-                    <div class="w-10 h-10 rounded-full border border-gray-400 flex items-center justify-center mb-3">
-                        <i class="ph ph-cpu text-xl text-eng-gold"></i>
-                    </div>
-                    <h4 class="text-xs font-bold">Tecnologia e<br><span class="font-normal text-gray-300">inovação aplicadas.</span></h4>
+                <div class="flex flex-col gap-2">
+                    <i class="ph ph-gear text-3xl text-[#a3b89b]"></i>
+                    <p class="text-xs font-semibold">Tecnologia e<br>métodos eficientes</p>
                 </div>
-                <!-- Benefit 3 -->
-                <div>
-                    <div class="w-10 h-10 rounded-full border border-gray-400 flex items-center justify-center mb-3">
-                        <i class="ph ph-users-three text-xl text-eng-gold"></i>
-                    </div>
-                    <h4 class="text-xs font-bold">Fornecedores<br><span class="font-normal text-gray-300">certificados.</span></h4>
+                <div class="flex flex-col gap-2">
+                    <i class="ph ph-handshake text-3xl text-[#a3b89b]"></i>
+                    <p class="text-xs font-semibold">Fornecedores<br>certificados</p>
                 </div>
-                <!-- Benefit 4 -->
-                <div>
-                    <div class="w-10 h-10 rounded-full border border-gray-400 flex items-center justify-center mb-3">
-                        <i class="ph ph-money text-xl text-eng-gold"></i>
-                    </div>
-                    <h4 class="text-xs font-bold">Preços e custos<br><span class="font-normal text-gray-300">sob controle.</span></h4>
+                <div class="flex flex-col gap-2">
+                    <i class="ph ph-clock text-3xl text-[#a3b89b]"></i>
+                    <p class="text-xs font-semibold">Prazos e custos<br>sob controle</p>
                 </div>
-                <!-- Benefit 5 -->
-                <div>
-                    <div class="w-10 h-10 rounded-full border border-gray-400 flex items-center justify-center mb-3">
-                        <i class="ph ph-shield-check text-xl text-eng-gold"></i>
-                    </div>
-                    <h4 class="text-xs font-bold">Qualidade em<br><span class="font-normal text-gray-300">cada detalhe.</span></h4>
+                <div class="flex flex-col gap-2">
+                    <i class="ph ph-medal text-3xl text-[#a3b89b]"></i>
+                    <p class="text-xs font-semibold">Qualidade em<br>cada etapa</p>
                 </div>
-                <!-- Benefit 6 -->
-                <div>
-                    <div class="w-10 h-10 rounded-full border border-gray-400 flex items-center justify-center mb-3">
-                        <i class="ph ph-truck text-xl text-eng-gold"></i>
-                    </div>
-                    <h4 class="text-xs font-bold">Garantia de<br><span class="font-normal text-gray-300">entrega.</span></h4>
+                <div class="flex flex-col gap-2">
+                    <i class="ph ph-shield-check text-3xl text-[#a3b89b]"></i>
+                    <p class="text-xs font-semibold">Garantia de<br>entrega</p>
                 </div>
             </div>
         </div>
-        <!-- Right: Image -->
-        <div class="w-full md:w-1/2 min-h-[400px] md:min-h-full relative">
-            <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?q=80&w=1925&auto=format&fit=crop" alt="Sala de Reunião com vista" class="absolute inset-0 w-full h-full object-cover">
+        <!-- Right Side -->
+        <div class="w-full md:w-1/2 min-h-[400px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&w=1000&q=80');">
         </div>
     </section>
 
-    <!-- BOTTOM CTA -->
-    <section class="bg-eng-gray-light py-10 border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-4">
-                <i class="ph ph-buildings text-4xl text-gray-400"></i>
-                <h3 class="text-lg md:text-xl font-bold text-gray-900">
-                    Vamos construir o próximo<br>
-                    grande ambiente da sua empresa?
-                </h3>
-            </div>
-            <div class="text-center md:text-left text-sm text-gray-500 max-w-sm">
-                Fale com um especialista e descubra como o modelo Turnkey pode transformar seu projeto em realidade.
+    <!-- PRE-FOOTER CTA -->
+    <section class="bg-[#f7f8f6] py-12 border-b border-gray-200">
+        <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-6">
+                <div class="w-16 h-16 bg-white shadow-sm rounded-md flex items-center justify-center flex-shrink-0">
+                    <i class="ph ph-buildings text-3xl text-brand"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">Vamos construir o próximo grande ambiente da sua empresa?</h3>
+                    <p class="text-sm text-gray-500">Fale com um especialista e descubra como o modelo Turnkey pode transformar seu projeto em resultado.</p>
+                </div>
             </div>
             <div>
-                <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-bold rounded text-white bg-eng-green hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap">
-                    <i class="ph ph-whatsapp-logo text-lg mr-2"></i>
-                    FALE NO WHATSAPP
+                <a href="#" class="inline-flex items-center gap-2 bg-[#465b3c] hover:bg-[#384830] transition text-white text-sm font-bold py-4 px-8 rounded-sm uppercase tracking-wide whitespace-nowrap">
+                    <i class="ph ph-whatsapp text-xl"></i> Fale no WhatsApp
                 </a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-eng-dark text-gray-300 pt-16 pb-8 text-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                
-                <!-- Col 1: Logo & Info -->
-                <div>
-                    <!-- Logo no rodapé também aumentada para ficar condizente com a do topo -->
-                    <a href="#" class="inline-block mb-4">
-                        <img src="logo.png" alt="EngOffice" class="h-24 md:h-32 w-auto object-contain filter invert brightness-0" onerror="this.src='https://placehold.co/250x100/transparent/white?text=Sua+Logo+Aqui'">
-                    </a>
-                    <p class="mb-4 text-gray-400 pr-4">
-                        Soluções completas em obras corporativas no modelo Turnkey, do projeto à entrega.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ph ph-instagram-logo text-xl"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ph ph-linkedin-logo text-xl"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="ph ph-youtube-logo text-xl"></i></a>
+    <footer class="bg-[#1b2118] text-gray-300 py-16">
+        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+            
+            <!-- Brand Column -->
+            <div class="lg:col-span-1">
+                <div class="flex items-center gap-2 mb-6">
+                    <i class="ph ph-buildings text-3xl text-brand-light"></i>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold leading-tight text-white tracking-tight">EngOffice</span>
+                        <span class="text-[8px] font-semibold text-gray-400 tracking-widest uppercase">Ambientes Corporativos</span>
                     </div>
                 </div>
-
-                <!-- Col 2: Links Institucional -->
-                <div>
-                    <h4 class="font-bold text-white uppercase tracking-wider mb-4">Institucional</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">Início</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Obras Corporativas</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Soluções</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Projetos</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Catálogo</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Quem Somos</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contato</a></li>
-                    </ul>
+                <p class="text-xs text-gray-400 mb-6 leading-relaxed">
+                    Soluções Turnkey em ambientes corporativos que unem design, funcionalidade e eficiência em cada entrega.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="ph ph-linkedin-logo text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="ph ph-instagram-logo text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="ph ph-youtube-logo text-xl"></i></a>
                 </div>
-
-                <!-- Col 3: Links Soluções -->
-                <div>
-                    <h4 class="font-bold text-white uppercase tracking-wider mb-4">Soluções</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">Escritório Corporativo</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Salas de Reunião</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Auditórios</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Áreas de Colaboração</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Recepções</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Contato & Mapa -->
-                <div>
-                    <h4 class="font-bold text-white uppercase tracking-wider mb-4">Atendimento</h4>
-                    <ul class="space-y-3 mb-6">
-                        <li class="flex items-start gap-2">
-                            <i class="ph ph-whatsapp-logo text-eng-green text-base mt-0.5"></i>
-                            <span>(11) 99999-9999</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="ph ph-envelope-simple text-eng-green text-base mt-0.5"></i>
-                            <span>contato@engoffice.com.br</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="ph ph-clock text-eng-green text-base mt-0.5"></i>
-                            <span>Segunda à Sexta, das 08h às 18h</span>
-                        </li>
-                    </ul>
-                    
-                    <!-- Fake Map Graphic -->
-                    <div class="flex items-center gap-4 text-gray-500">
-                        <i class="ph ph-map-pin-line text-4xl text-eng-green opacity-50"></i>
-                        <div>
-                            <p class="font-bold text-white">Atendemos<br>todo o Brasil</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- Copyright -->
-            <div class="text-center text-[10px] text-gray-500 border-t border-gray-800 pt-8">
-                &copy; 2024 EngOffice Ambientes Corporativos. Todos os direitos reservados.
+            <!-- Navegação -->
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-6">Navegação</h4>
+                <ul class="text-xs space-y-3 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Início</a></li>
+                    <li><a href="#" class="hover:text-white transition">Obras Corporativas</a></li>
+                    <li><a href="#" class="hover:text-white transition">Soluções</a></li>
+                    <li><a href="#" class="hover:text-white transition">Projetos</a></li>
+                    <li><a href="#" class="hover:text-white transition">Catálogo</a></li>
+                    <li><a href="#" class="hover:text-white transition">Quem Somos</a></li>
+                    <li><a href="#" class="hover:text-white transition">Contato</a></li>
+                </ul>
             </div>
+
+            <!-- Soluções -->
+            <div>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-6">Soluções</h4>
+                <ul class="text-xs space-y-3 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Escritórios Corporativos</a></li>
+                    <li><a href="#" class="hover:text-white transition">Salas de Reunião</a></li>
+                    <li><a href="#" class="hover:text-white transition">Auditórios</a></li>
+                    <li><a href="#" class="hover:text-white transition">Áreas de Colaboração</a></li>
+                    <li><a href="#" class="hover:text-white transition">Recepções</a></li>
+                </ul>
+            </div>
+
+            <!-- Atendimento -->
+            <div class="lg:col-span-1">
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-6">Atendimento</h4>
+                <ul class="text-xs space-y-4 text-gray-400">
+                    <li class="flex items-start gap-3">
+                        <i class="ph ph-whatsapp-logo text-brand-light text-base mt-0.5"></i>
+                        <span>(11) 99999-9999</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="ph ph-envelope-simple text-brand-light text-base mt-0.5"></i>
+                        <span>contato@engoffice.com.br</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="ph ph-clock text-brand-light text-base mt-0.5"></i>
+                        <span>Segunda a Sexta, das 08h às 18h</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Map -->
+            <div class="flex items-center gap-4 lg:justify-end">
+                <i class="ph ph-map-trifold text-5xl text-brand-light opacity-50"></i>
+                <div class="text-xs">
+                    <span class="block text-gray-400">Atendemos</span>
+                    <strong class="text-white">todo o Brasil</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-[1400px] mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-center text-[10px] text-gray-500">
+            <p>&copy; 2024 EngOffice Ambientes Corporativos. Todos os direitos reservados.</p>
         </div>
     </footer>
 
