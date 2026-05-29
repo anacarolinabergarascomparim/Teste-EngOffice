@@ -1,580 +1,369 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EngOffice - Ambientes Corporativos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            DEFAULT: '#465b3c', // Verde oliva principal
-                            dark: '#1b2118',    // Fundo escuro (stats, footer)
-                            light: '#f4f5f2',   // Fundo claro (hero, cards)
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Estilos adicionais personalizados para pequenos ajustes */
-        body {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .hide-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scroll {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Haki — Evelyn Rocha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#120c1d;
+    --bg2:#1a1130;
+    --panel:#201634;
+    --panel-2:#271b41;
+    --line:#3a2c57;
+    --text:#f4eefb;
+    --muted:#b3a7cc;
+    --coral:#ff7a59;
+    --coral-2:#ff5e7e;
+    --gold:#f7c453;
+    --wpp:#25d366;
+    --grad:linear-gradient(110deg,var(--coral) 0%,var(--coral-2) 45%,var(--gold) 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Sora',sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--coral);color:#1a0f12}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+  .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ---------- atmosphere ---------- */
+  .glow{position:fixed;border-radius:50%;filter:blur(110px);opacity:.5;z-index:0;pointer-events:none}
+  .glow.a{width:520px;height:520px;background:#ff5e7e;top:-180px;right:-120px}
+  .glow.b{width:460px;height:460px;background:#7a4bff;bottom:10%;left:-160px;opacity:.35}
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  main{position:relative;z-index:2}
+
+  /* ---------- hero ---------- */
+  header{padding:42px 0 0}
+  .brandbar{display:flex;justify-content:space-between;align-items:center;
+    opacity:0;animation:fade .8s ease forwards}
+  .brand{font-family:'Bricolage Grotesque';font-weight:800;font-size:20px;letter-spacing:-.03em}
+  .brand span{color:var(--coral)}
+  .tag{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  .hero{padding:72px 0 56px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:26px;
+    opacity:0;animation:fade .8s .1s ease forwards}
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+  .hero h1{font-size:clamp(40px,7vw,76px);margin-bottom:26px;
+    opacity:0;animation:rise 1s .2s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero h1 em{font-style:normal}
+  .intro{font-size:clamp(17px,2.1vw,21px);color:var(--muted);max-width:620px;font-weight:300;
+    opacity:0;animation:rise 1s .38s cubic-bezier(.2,.7,.2,1) forwards}
+  .intro strong{color:var(--text);font-weight:500}
+
+  /* ---------- audio wave ---------- */
+  .wave{display:flex;align-items:flex-end;gap:5px;height:54px;margin:40px 0 0;
+    opacity:0;animation:fade 1s .7s ease forwards}
+  .wave i{width:5px;border-radius:4px;background:var(--grad);animation:bounce 1.3s ease-in-out infinite}
+  @keyframes bounce{0%,100%{height:8px;opacity:.5}50%{height:48px;opacity:1}}
+
+  .meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:46px;padding-top:26px;
+    border-top:1px solid var(--line);font-size:14px;color:var(--muted);
+    opacity:0;animation:fade 1s .8s ease forwards}
+  .meta b{color:var(--text);font-weight:500}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0}
+  .kicker{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:14px}
+  .sec-title{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
+  .sec-sub{color:var(--muted);max-width:600px;margin-bottom:40px;font-size:16px}
+
+  /* ---------- plans ---------- */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .plan{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:30px 24px;
+    position:relative;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s}
+  .plan:hover{transform:translateY(-8px);border-color:var(--coral);box-shadow:0 24px 50px -24px rgba(255,94,126,.5)}
+  .plan.feat{background:linear-gradient(180deg,var(--panel-2),var(--panel));border-color:var(--coral)}
+  .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);
+    color:#1a0f12;font-family:'Bricolage Grotesque';font-weight:800;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;padding:6px 14px;border-radius:30px;white-space:nowrap}
+  .plan h3{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:600}
+  .plan.feat h3{color:var(--gold)}
+  .price{font-family:'Bricolage Grotesque';font-weight:800;font-size:44px;letter-spacing:-.03em;line-height:1}
+  .price small{display:block;font-family:'Sora';font-weight:300;font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:0}
+  .plan ul{list-style:none;margin:24px 0 0;border-top:1px solid var(--line);padding-top:20px}
+  .plan li{font-size:14.5px;color:var(--text);display:flex;gap:11px;padding:7px 0;font-weight:300}
+  .plan li svg{flex:none;margin-top:3px}
+  .plan li b{font-weight:500}
+  .note{margin-top:26px;font-size:13.5px;color:var(--muted);font-style:italic;
+    background:var(--panel);border-left:2px solid var(--gold);padding:14px 18px;border-radius:0 10px 10px 0}
+
+  /* ---------- includes ---------- */
+  .incl{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .incl div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+    font-size:15px;display:flex;gap:13px;align-items:flex-start;font-weight:300;transition:border-color .3s}
+  .incl div:hover{border-color:var(--coral)}
+  .incl .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--grad);margin-top:8px}
+
+  /* ---------- why ---------- */
+  .why{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .why h3{font-size:20px;margin-bottom:14px;color:var(--text)}
+  .pill{display:inline-block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
+    border:1px solid var(--line);border-radius:30px;padding:5px 13px;margin-bottom:18px}
+  .why p{color:var(--muted);font-size:15.5px;margin-bottom:14px}
+  .why p b{color:var(--text);font-weight:500}
+  .pillars{list-style:none;margin-top:8px}
+  .pillars li{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .pillars li:last-child{border:none}
+  .pillars b{color:var(--coral);font-weight:600;font-family:'Bricolage Grotesque';letter-spacing:-.01em}
+
+  /* ---------- diferencial IA ---------- */
+  .diff{position:relative;border-radius:24px;padding:44px 40px;overflow:hidden;
+    background:linear-gradient(135deg,var(--panel-2),var(--panel));border:1px solid var(--coral)}
+  .diff::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,rgba(247,196,83,.35),transparent 70%);top:-120px;right:-80px;pointer-events:none}
+  .diff .tagbox{display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:500}
+  .diff h3{font-size:clamp(24px,3.6vw,34px);margin-bottom:16px;max-width:680px;position:relative;z-index:1}
+  .diff p{color:var(--muted);font-size:16px;max-width:620px;position:relative;z-index:1}
+  .diff p b{color:var(--text);font-weight:500}
+  .diff .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;position:relative;z-index:1}
+  .diff .tags span{font-size:13px;color:var(--text);background:rgba(255,255,255,.05);
+    border:1px solid var(--line);border-radius:30px;padding:8px 16px}
+
+  /* ---------- steps ---------- */
+  .steps{counter-reset:s;display:grid;gap:2px}
+  .step{display:flex;gap:22px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line)}
+  .step::before{counter-increment:s;content:counter(s,decimal-leading-zero);
+    font-family:'Bricolage Grotesque';font-weight:800;font-size:24px;color:var(--coral);min-width:46px}
+  .step p{font-size:16px;font-weight:300}
+
+  /* ---------- cta footer ---------- */
+  .end{text-align:center;padding:80px 0 90px}
+  .end h2{font-size:clamp(30px,5vw,52px);margin-bottom:20px}
+  .end p{color:var(--muted);font-size:17px;margin-bottom:34px}
+  .cta-big{display:inline-flex;align-items:center;gap:12px;background:var(--grad);color:#1a0f12;
+    font-family:'Bricolage Grotesque';font-weight:800;font-size:18px;letter-spacing:.01em;
+    padding:18px 34px;border-radius:48px;text-decoration:none;
+    box-shadow:0 18px 40px -12px rgba(255,94,126,.6);transition:transform .25s}
+  .cta-big:hover{transform:translateY(-3px) scale(1.02)}
+  .signature{font-family:'Bricolage Grotesque';font-weight:800;font-size:22px;margin-top:46px}
+  .contact{color:var(--muted);font-size:14px;margin-top:6px}
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:12.5px;letter-spacing:.04em}
+
+  /* ---------- floating cta ---------- */
+  .floatcta{position:fixed;right:24px;bottom:24px;z-index:20;background:var(--wpp);color:#06310f;
+    border:none;font-family:'Bricolage Grotesque';font-weight:800;font-size:14px;letter-spacing:.02em;
+    padding:15px 22px;border-radius:40px;cursor:pointer;display:flex;align-items:center;gap:9px;
+    text-decoration:none;box-shadow:0 14px 34px -10px rgba(37,211,102,.6);transition:transform .25s}
+  .floatcta:hover{transform:translateY(-3px) scale(1.02)}
+  .floatcta:active{transform:scale(.97)}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @keyframes fade{to{opacity:1}}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  @media(max-width:780px){
+    .plans{grid-template-columns:1fr}
+    .plan.feat{order:-1}
+    .incl,.why{grid-template-columns:1fr}
+    .why{gap:30px}
+    .floatcta{right:16px;bottom:16px;padding:13px 18px;font-size:13px}
+  }
+</style>
 </head>
-<body class="font-sans text-gray-800 bg-white">
+<body>
+<div class="glow a"></div>
+<div class="glow b"></div>
+<div class="grain"></div>
 
-    <!-- HEADER / NAVBAR -->
-    <header class="w-full bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center gap-2 cursor-pointer">
-                <i class="ph ph-buildings text-4xl text-brand"></i>
-                <div class="flex flex-col">
-                    <span class="text-xl font-bold leading-tight text-gray-900 tracking-tight">EngOffice</span>
-                    <span class="text-[10px] font-semibold text-gray-500 tracking-widest uppercase">Ambientes Corporativos</span>
-                </div>
-            </div>
+<main>
+<div class="wrap">
 
-            <!-- Navigation (Desktop) -->
-            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-600">
-                <a href="#" class="hover:text-brand transition-colors">INÍCIO</a>
-                <a href="#" class="hover:text-brand transition-colors text-brand border-b-2 border-brand pb-1">OBRAS CORPORATIVAS</a>
-                <a href="#" class="hover:text-brand transition-colors">SOLUÇÕES</a>
-                <a href="#" class="hover:text-brand transition-colors">PROJETOS</a>
-                <a href="#" class="hover:text-brand transition-colors">CATÁLOGO</a>
-                <a href="#" class="hover:text-brand transition-colors">QUEM SOMOS</a>
-                <a href="#" class="hover:text-brand transition-colors">CONTATO</a>
-            </nav>
+  <header>
+    <div class="brandbar">
+      <div class="brand">Evelyn Rocha<span>.</span></div>
+      <div class="tag">Proposta Comercial · 2026</div>
+    </div>
+  </header>
 
-            <!-- CTA Button -->
-            <a href="#" class="hidden md:flex items-center gap-2 bg-[#465b3c] hover:bg-[#384830] transition-colors text-white text-xs font-bold py-3 px-5 rounded-sm uppercase tracking-wide">
-                <i class="ph ph-whatsapp text-lg"></i>
-                Fale no WhatsApp
-            </a>
+  <!-- ====== HERO / INTRODUÇÃO ====== -->
+  <section class="hero">
+    <span class="eyebrow">Gestão de Redes Sociais · Haki</span>
+    <h1>Você já é o <em class="accent">nº 1</em><br>do mercado.<br>Agora vamos<br>provar isso online.</h1>
+    <p class="intro">Você construiu a maior comunidade de revenda de moedas do Haki no boca a boca. <strong>Imagina o que acontece quando isso vira presença digital.</strong> Esta proposta mostra como atrair novos usuários todos os dias — de forma 100% orgânica, sem gastar um centavo em anúncios neste começo.</p>
+    <div class="wave" id="wave"></div>
+    <div class="meta">
+      <span>Para: <b>Allisson Master</b></span>
+      <span>Por: <b>Evelyn Rocha</b></span>
+      <span>Validade: <b>30 dias</b></span>
+    </div>
+  </section>
 
-            <!-- Mobile Menu Button -->
-            <button class="lg:hidden text-gray-800 text-2xl">
-                <i class="ph ph-list"></i>
-            </button>
-        </div>
-    </header>
+  <!-- ====== PLANOS (preço primeiro) ====== -->
+  <section id="planos">
+    <div class="kicker">Escolha o ritmo</div>
+    <h2 class="sec-title reveal">Planos e investimento</h2>
+    <p class="sec-sub reveal">Três caminhos, uma só pergunta: com que velocidade você quer crescer? Comece menor e escale conforme os resultados aparecem.</p>
 
-    <!-- HERO SECTION -->
-    <section class="w-full flex flex-col md:flex-row min-h-[600px] bg-brand-light">
-        <!-- Text Content -->
-        <div class="w-full md:w-[45%] flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16">
-            <span class="text-xs font-bold tracking-widest text-gray-500 mb-4 uppercase">Obras Corporativas Turnkey</span>
-            <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.1] mb-6">
-                Ambientes corporativos completos.<br>
-                <span class="text-brand">Do projeto à entrega, cuidamos de tudo.</span>
-            </h1>
-            <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-8 max-w-lg">
-                Soluções completas em ambientes corporativos no modelo Turnkey. Do planejamento à entrega, unimos design, funcionalidade e eficiência para transformar espaços e impulsionar resultados.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="#" class="flex items-center justify-center gap-2 bg-[#465b3c] text-white text-xs font-bold py-3 px-6 rounded-sm uppercase hover:bg-[#384830] transition">
-                    <i class="ph ph-whatsapp text-lg"></i>
-                    Solicite um Orçamento
-                </a>
-                <a href="#" class="flex items-center justify-center text-gray-700 bg-transparent border border-gray-400 text-xs font-bold py-3 px-6 rounded-sm uppercase hover:bg-gray-100 transition">
-                    Falar com Especialista
-                </a>
-            </div>
-        </div>
-        <!-- Image Content -->
-        <div class="w-full md:w-[55%] min-h-[300px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80');">
-        </div>
-    </section>
+    <div class="plans">
+      <div class="plan reveal">
+        <h3>Essencial</h3>
+        <div class="price">R$ 2.500<small>por mês · gestão</small></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#ff7a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>3 conteúdos</b>/semana — vídeos + carrosséis</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#ff7a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>TikTok + Instagram</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#ff7a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Gestão de comunidade básica</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#ff7a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Relatório mensal</span></li>
+        </ul>
+      </div>
 
-    <!-- STATS SECTION -->
-    <section class="bg-[#1b2118] text-white py-12">
-        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8 text-center divide-x divide-gray-700/50">
-            <div class="flex items-center justify-center gap-4">
-                <i class="ph ph-buildings text-4xl text-brand-light opacity-80"></i>
-                <div class="text-left">
-                    <span class="block text-3xl font-bold">250</span>
-                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Obras Entregues</span>
-                </div>
-            </div>
-            <div class="flex items-center justify-center gap-4">
-                <i class="ph ph-users text-4xl text-brand-light opacity-80"></i>
-                <div class="text-left">
-                    <span class="block text-3xl font-bold">132</span>
-                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Empresas Atendidas</span>
-                </div>
-            </div>
-            <div class="flex items-center justify-center gap-4">
-                <i class="ph ph-ruler text-4xl text-brand-light opacity-80"></i>
-                <div class="text-left">
-                    <span class="block text-3xl font-bold">90 MIL <span class="text-xl">m²</span></span>
-                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Mobiliados</span>
-                </div>
-            </div>
-            <div class="flex items-center justify-center gap-4">
-                <i class="ph ph-map-pin text-4xl text-brand-light opacity-80"></i>
-                <div class="text-left">
-                    <span class="block text-3xl font-bold">16</span>
-                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Estados Atendidos</span>
-                </div>
-            </div>
-            <div class="flex items-center justify-center gap-4 border-none md:border-solid">
-                <i class="ph ph-star text-4xl text-brand-light opacity-80"></i>
-                <div class="text-left">
-                    <span class="block text-3xl font-bold">17</span>
-                    <span class="text-[10px] tracking-widest uppercase text-gray-400">Anos de Experiência</span>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="plan feat reveal">
+        <div class="badge">✦ Mais vantajoso</div>
+        <h3>Crescimento</h3>
+        <div class="price accent">R$ 3.800<small>por mês · gestão</small></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#f7c453" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>5 conteúdos</b>/semana — vídeos, carrosséis e artes</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#f7c453" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>TikTok + Instagram</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#f7c453" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Gestão de comunidade completa</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#f7c453" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Relatório quinzenal</span></li>
+        </ul>
+      </div>
 
-    <!-- COMO FUNCIONA SECTION -->
-    <section class="py-20 bg-white">
-        <div class="max-w-[1200px] mx-auto px-6 text-center">
-            <h2 class="text-sm font-bold tracking-widest text-gray-800 uppercase mb-16">Como Funciona o Turnkey EngOffice</h2>
-            
-            <div class="flex flex-col md:flex-row items-start justify-between relative gap-6 md:gap-0">
-                <!-- Linha conectora desktop -->
-                <div class="hidden md:block absolute top-[40px] left-[8%] right-[8%] h-[1px] bg-gray-300 -z-10"></div>
+      <div class="plan reveal">
+        <h3>Escala</h3>
+        <div class="price">R$ 5.500<small>por mês · gestão</small></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#ff7a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Conteúdo diário</b> — vídeos, carrosséis e artes</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#ff7a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>TikTok + Instagram + Shorts</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#ff7a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Comunidade completa + prioritária</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.5 3.5L13 4" stroke="#ff7a59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Relatório semanal</span></li>
+        </ul>
+      </div>
+    </div>
 
-                <!-- Step 1 -->
-                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
-                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
-                        <i class="ph ph-chat-circle-dots text-3xl"></i>
-                    </div>
-                    <span class="text-brand font-bold text-lg mb-1">01</span>
-                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Briefing</h3>
-                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Entendemos as necessidades e os objetivos do projeto.</p>
-                </div>
+    <p class="note reveal">Valores referentes exclusivamente à gestão. A produção dos vídeos (cachê dos criadores freelancers) é paga à parte pelo cliente, conforme o plano — e toda a coordenação dessa produção fica comigo.</p>
+  </section>
 
-                <!-- Arrow Icon Desktop -->
-                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
+  <!-- ====== O QUE ESTÁ INCLUSO ====== -->
+  <section id="escopo">
+    <div class="kicker">Em todos os planos</div>
+    <h2 class="sec-title reveal">O que está incluso</h2>
+    <p class="sec-sub reveal">Independente do plano escolhido, a entrega é completa de ponta a ponta — conteúdo mesclado entre vídeo, carrossel e design.</p>
+    <div class="incl">
+      <div class="reveal"><span class="dot"></span>Planejamento e estratégia de conteúdo mensal</div>
+      <div class="reveal"><span class="dot"></span>Mix de formatos: vídeos, carrosséis e artes (design incluído)</div>
+      <div class="reveal"><span class="dot"></span>Roteirização, briefing e produção dos conteúdos</div>
+      <div class="reveal"><span class="dot"></span>Publicação, legendas, hashtags e otimização orgânica</div>
+      <div class="reveal"><span class="dot"></span>Gestão da comunidade e direcionamento ao WhatsApp</div>
+      <div class="reveal"><span class="dot"></span>Relatório de desempenho com próximos passos</div>
+    </div>
+  </section>
 
-                <!-- Step 2 -->
-                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
-                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
-                        <i class="ph ph-clipboard-text text-3xl"></i>
-                    </div>
-                    <span class="text-brand font-bold text-lg mb-1">02</span>
-                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Planejamento</h3>
-                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Desenvolvemos layout, soluções e orçamento personalizado.</p>
-                </div>
+  <!-- ====== DIFERENCIAL IA ====== -->
+  <section id="diferencial">
+    <div class="diff reveal">
+      <div class="tagbox">✦ O diferencial</div>
+      <h3>Produção com Inteligência Artificial <span class="accent">+</span> criadores reais</h3>
+      <p>Eu trabalho com IA na produção de conteúdo — o que significa <b>mais agilidade, menos dependência de agenda de freelancer e custo otimizado</b>. A estratégia mescla os dois mundos: vídeos com pessoas reais quando a autenticidade do depoimento importa, e produção com IA quando precisamos de volume, variações e velocidade. O melhor de cada um, na hora certa.</p>
+      <div class="tags">
+        <span>Avatares e vozes com IA</span>
+        <span>Variações em escala</span>
+        <span>Criadores reais para depoimentos</span>
+        <span>Produção mais rápida</span>
+      </div>
+    </div>
+  </section>
 
-                <!-- Arrow Icon Desktop -->
-                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
+  <!-- ====== POR QUE FUNCIONA ====== -->
+  <section id="estrategia">
+    <div class="kicker">A inteligência por trás</div>
+    <h2 class="sec-title reveal">Por que essa estratégia funciona</h2>
+    <p class="sec-sub reveal">O detalhe que muda tudo: enquanto todo concorrente fala só em dinheiro, a gente vende o que realmente prende as pessoas.</p>
+    <div class="why">
+      <div class="reveal">
+        <span class="pill">A oportunidade</span>
+        <h3>Amizade primeiro. Ganho como consequência.</h3>
+        <p>O Haki não é só "renda extra" — é uma plataforma social de áudio onde as pessoas <b>fazem amizades, interagem e trocam presentes</b>. Esse é o ângulo que a concorrência ignora.</p>
+        <p>Comunicando conexão e entretenimento (e não só dinheiro), o conteúdo fica mais autêntico, ganha <b>mais alcance orgânico</b> e sofre menos rejeição dos algoritmos.</p>
+        <p>O formato é estratégico: <b>vídeos com pessoas reais</b> para alcance, <b>carrosséis</b> para ensinar e gerar salvamentos, e <b>design/artes</b> para reforçar autoridade. E com <b>produção via IA</b> entrando na mescla, ganhamos volume e variações sem estourar o custo — tudo trabalhando junto.</p>
+      </div>
+      <div class="reveal">
+        <span class="pill">Os 4 pilares de conteúdo</span>
+        <ul class="pillars">
+          <li><b>Conexão & amizade</b> — histórias de quem criou vínculos reais no app.</li>
+          <li><b>Entretenimento</b> — bastidores das lives, momentos divertidos e presentes.</li>
+          <li><b>Como funciona</b> — vídeos e carrosséis simples explicando o uso da plataforma.</li>
+          <li><b>Prova social</b> — depoimentos reais e seu posicionamento como referência.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-                <!-- Step 3 -->
-                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
-                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
-                        <i class="ph ph-file-check text-3xl"></i>
-                    </div>
-                    <span class="text-brand font-bold text-lg mb-1">03</span>
-                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Aprovação</h3>
-                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Ajustamos os detalhes e aprovamos o projeto junto com você.</p>
-                </div>
+  <!-- ====== MÉTRICAS ====== -->
+  <section id="metricas">
+    <div class="kicker">Como medimos sucesso</div>
+    <h2 class="sec-title reveal">Resultados que vamos acompanhar</h2>
+    <p class="sec-sub reveal">Os primeiros 60 a 90 dias são de construção de base e aprendizado sobre o que mais engaja — a partir daí o crescimento acelera.</p>
+    <div class="incl">
+      <div class="reveal"><span class="dot"></span><span><b style="font-weight:500">Crescimento de seguidores</b> nos dois canais</span></div>
+      <div class="reveal"><span class="dot"></span><span><b style="font-weight:500">Alcance e visualizações</b> dos conteúdos</span></div>
+      <div class="reveal"><span class="dot"></span><span><b style="font-weight:500">Engajamento</b> — comentários, salvamentos, compartilhamentos</span></div>
+      <div class="reveal"><span class="dot"></span><span><b style="font-weight:500">Cliques no link</b> e entradas na comunidade do WhatsApp</span></div>
+    </div>
+  </section>
 
-                <!-- Arrow Icon Desktop -->
-                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
+  <!-- ====== PRÓXIMOS PASSOS ====== -->
+  <section id="passos">
+    <div class="kicker">Mão na massa</div>
+    <h2 class="sec-title reveal">Próximos passos</h2>
+    <div class="steps" style="margin-top:30px">
+      <div class="step reveal"><p>Escolha do plano e alinhamento de expectativas.</p></div>
+      <div class="step reveal"><p>Criação e configuração dos perfis no TikTok e Instagram.</p></div>
+      <div class="step reveal"><p>Definição da identidade visual e tom de voz.</p></div>
+      <div class="step reveal"><p>Seleção dos criadores e produção do primeiro lote de conteúdos.</p></div>
+      <div class="step reveal"><p>Início das publicações e acompanhamento de perto.</p></div>
+    </div>
+  </section>
 
-                <!-- Step 4 -->
-                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
-                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
-                        <i class="ph ph-hard-hat text-3xl"></i>
-                    </div>
-                    <span class="text-brand font-bold text-lg mb-1">04</span>
-                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Execução</h3>
-                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Gerenciamos toda a obra, fornecedores e instalações com equipe própria.</p>
-                </div>
+  <!-- ====== FECHAMENTO ====== -->
+  <section class="end">
+    <h2 class="reveal">Bora colocar o <span class="accent">nº 1</span><br>no lugar que merece?</h2>
+    <p class="reveal">Escolheu o plano? É só clicar e a gente já começa.</p>
+    <a class="cta-big reveal" href="https://wa.me/5515991573135?text=Quero%20fechar%20agora!%20" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#1a0f12"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 01-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 012.41 5.82c0 4.54-3.69 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+      Fechar agora
+    </a>
+    <div class="signature reveal">Evelyn Rocha</div>
+    <div class="contact reveal">contatoevelynrocha@gmail.com · (15) 99157-3135</div>
+  </section>
 
-                <!-- Arrow Icon Desktop -->
-                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
+</div>
+<footer>Evelyn Rocha · Proposta de Gestão de Redes Sociais · Haki</footer>
+</main>
 
-                <!-- Step 5 -->
-                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
-                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
-                        <i class="ph ph-check-circle text-3xl"></i>
-                    </div>
-                    <span class="text-brand font-bold text-lg mb-1">05</span>
-                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Entrega</h3>
-                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Entregamos o ambiente 100% pronto para uso, com total garantia.</p>
-                </div>
+<a class="floatcta" href="https://wa.me/5515991573135?text=Quero%20fechar%20agora!%20" target="_blank" rel="noopener">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="#06310f"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+  Fechar agora
+</a>
 
-                <!-- Arrow Icon Desktop -->
-                <div class="hidden md:flex items-center h-20 text-gray-400"><i class="ph ph-arrow-right text-xl bg-white px-2"></i></div>
+<script>
+  // audio wave bars
+  const wave=document.getElementById('wave');
+  const heights=[18,34,12,46,26,40,16,48,22,38,14,44,30,20,42,24];
+  heights.forEach((h,i)=>{const b=document.createElement('i');b.style.animationDelay=(i*0.08)+'s';wave.appendChild(b);});
 
-                <!-- Step 6 -->
-                <div class="flex flex-col items-center w-full md:w-1/6 bg-white">
-                    <div class="w-20 h-20 bg-white border border-gray-200 rounded-full flex items-center justify-center mb-4 text-brand shadow-sm">
-                        <i class="ph ph-headset text-3xl"></i>
-                    </div>
-                    <span class="text-brand font-bold text-lg mb-1">06</span>
-                    <h3 class="text-xs font-bold uppercase tracking-wider mb-2">Pós-Entrega</h3>
-                    <p class="text-[11px] text-gray-500 leading-relaxed px-2">Suporte e assistência contínua para garantir a sua tranquilidade.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- OBRAS REALIZADAS SECTION -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <h2 class="text-sm font-bold tracking-widest text-gray-800 uppercase text-center mb-12">Obras Corporativas Realizadas</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=80" alt="Escritório Corporativo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <div class="flex items-center gap-2 mb-2 text-brand">
-                            <i class="ph ph-buildings"></i>
-                            <h3 class="font-bold text-sm text-gray-900">Escritório Corporativo</h3>
-                        </div>
-                        <p class="text-xs text-gray-500 mb-1">Empresa de Tecnologia</p>
-                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> São Paulo - SP</p>
-                        <div class="mt-auto">
-                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=600&q=80" alt="Sala de Reunião" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <div class="flex items-center gap-2 mb-2 text-brand">
-                            <i class="ph ph-users-three"></i>
-                            <h3 class="font-bold text-sm text-gray-900">Sala de Reunião Executiva</h3>
-                        </div>
-                        <p class="text-xs text-gray-500 mb-1">Instituição Financeira</p>
-                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> Rio de Janeiro - RJ</p>
-                        <div class="mt-auto">
-                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Área de Colaboração" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <div class="flex items-center gap-2 mb-2 text-brand">
-                            <i class="ph ph-coffee"></i>
-                            <h3 class="font-bold text-sm text-gray-900">Área de Colaboração</h3>
-                        </div>
-                        <p class="text-xs text-gray-500 mb-1">Agência de Marketing</p>
-                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> Curitiba - PR</p>
-                        <div class="mt-auto">
-                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=600&q=80" alt="Auditório" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <div class="flex items-center gap-2 mb-2 text-brand">
-                            <i class="ph ph-presentation-chart"></i>
-                            <h3 class="font-bold text-sm text-gray-900">Auditório Corporativo</h3>
-                        </div>
-                        <p class="text-xs text-gray-500 mb-1">Empresa de Educação</p>
-                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> Porto Alegre - RS</p>
-                        <div class="mt-auto">
-                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col group">
-                    <div class="h-48 overflow-hidden relative">
-                        <div class="absolute inset-0 flex items-center justify-center z-10">
-                             <div class="text-white text-3xl opacity-50"><i class="ph ph-leaf"></i> logo</div>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=600&q=80" alt="Recepção" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 brightness-75">
-                    </div>
-                    <div class="p-5 flex-grow flex flex-col">
-                        <div class="flex items-center gap-2 mb-2 text-brand">
-                            <i class="ph ph-door"></i>
-                            <h3 class="font-bold text-sm text-gray-900">Recepção Corporativa</h3>
-                        </div>
-                        <p class="text-xs text-gray-500 mb-1">Indústria de Alimentos</p>
-                        <p class="text-[11px] text-gray-400 flex items-center gap-1 mb-4"><i class="ph ph-map-pin"></i> Belo Horizonte - MG</p>
-                        <div class="mt-auto">
-                            <a href="#" class="inline-block border border-gray-300 text-gray-700 text-[10px] font-bold uppercase py-2 px-4 rounded hover:bg-gray-50 transition">Ver Projeto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-12 text-center">
-                <a href="#" class="inline-block bg-[#465b3c] hover:bg-[#384830] transition text-white text-xs font-bold py-3 px-8 rounded-sm uppercase tracking-wider">Ver Todas as Obras</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- VÍDEOS SECTION -->
-    <section class="bg-[#121613] text-white py-20">
-        <div class="max-w-[1400px] mx-auto px-6 flex flex-col lg:flex-row gap-12 items-center">
-            <!-- Text -->
-            <div class="w-full lg:w-1/4">
-                <span class="text-[10px] text-brand-light uppercase tracking-widest font-bold mb-3 block">Conheça Nossas Obras</span>
-                <h2 class="text-2xl lg:text-3xl font-bold mb-4 leading-tight">Assista aos vídeos e conheça ambientes que transformamos.</h2>
-                <p class="text-gray-400 text-sm mb-6 leading-relaxed">Cada projeto é único. Cada detalhe, pensado para gerar bem-estar, produtividade e resultados.</p>
-                <a href="#" class="flex items-center gap-2 text-xs font-bold uppercase hover:text-brand transition tracking-wider">
-                    <i class="ph ph-play-circle text-2xl"></i> Assistir Todos os Vídeos
-                </a>
-            </div>
-
-            <!-- Videos Grid -->
-            <div class="w-full lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Video 1 -->
-                <div class="relative group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="Video 1" class="w-full h-40 object-cover brightness-75 group-hover:brightness-100 transition duration-300">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 group-hover:scale-110 transition">
-                            <i class="ph-fill ph-play text-lg ml-1"></i>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <h4 class="text-xs font-bold">Escritório Corporativo</h4>
-                        <p class="text-[10px] text-gray-400">São Paulo - SP</p>
-                    </div>
-                </div>
-                <!-- Video 2 -->
-                <div class="relative group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1505409859467-3a796fd5798e?auto=format&fit=crop&w=400&q=80" alt="Video 2" class="w-full h-40 object-cover brightness-75 group-hover:brightness-100 transition duration-300">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 group-hover:scale-110 transition">
-                            <i class="ph-fill ph-play text-lg ml-1"></i>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <h4 class="text-xs font-bold">Auditório Corporativo</h4>
-                        <p class="text-[10px] text-gray-400">Porto Alegre - RS</p>
-                    </div>
-                </div>
-                <!-- Video 3 -->
-                <div class="relative group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Video 3" class="w-full h-40 object-cover brightness-75 group-hover:brightness-100 transition duration-300">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 group-hover:scale-110 transition">
-                            <i class="ph-fill ph-play text-lg ml-1"></i>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <h4 class="text-xs font-bold">Área de Colaboração</h4>
-                        <p class="text-[10px] text-gray-400">Curitiba - PR</p>
-                    </div>
-                </div>
-                <!-- Video 4 -->
-                <div class="relative group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=400&q=80" alt="Video 4" class="w-full h-40 object-cover brightness-75 group-hover:brightness-100 transition duration-300">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-900 group-hover:scale-110 transition">
-                            <i class="ph-fill ph-play text-lg ml-1"></i>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <h4 class="text-xs font-bold">Recepção Corporativa</h4>
-                        <p class="text-[10px] text-gray-400">Belo Horizonte - MG</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CLIENTS SECTION -->
-    <section class="py-12 bg-white border-b border-gray-100">
-        <div class="max-w-[1400px] mx-auto px-6 text-center">
-            <h2 class="text-xs font-bold tracking-widest text-gray-500 uppercase mb-8">Empresas que confiam na EngOffice</h2>
-            
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
-                <!-- Simulando as logos com texto estlizado e cores originais para o hover -->
-                <span class="text-xl font-bold text-[#004b93]">ambev</span>
-                <span class="text-xl font-bold text-[#cc092f] flex items-center gap-1"><div class="w-3 h-3 bg-[#cc092f] rounded-sm"></div> Bradesco</span>
-                <span class="text-2xl font-bold text-[#660099]">vivo</span>
-                <span class="text-xl font-bold text-[#1a8e48]">stone</span>
-                <span class="text-xl font-bold text-[#006e40]">RD Saúde</span>
-                <span class="text-xl font-bold text-[#004e9a]">TOTVS</span>
-                <span class="text-xl font-bold text-[#00a345] italic">Localiza</span>
-                <span class="text-xl font-bold text-[#00a651]">Sicredi</span>
-                <span class="text-xl font-bold text-[#006341]">MRV</span>
-                <span class="text-lg font-bold text-[#000000] border border-black rounded-full px-2">vfs. GLOBAL</span>
-                <span class="text-xl font-bold text-[#00a4e4]">KUMON</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- BENEFITS SECTION -->
-    <section class="w-full flex flex-col md:flex-row">
-        <!-- Left Side -->
-        <div class="w-full md:w-1/2 bg-[#36482f] text-white p-12 md:p-20 flex flex-col justify-center">
-            <span class="text-[10px] font-bold tracking-widest uppercase text-brand-light/80 mb-4">Por que escolher a EngOffice?</span>
-            <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-12">
-                Mais do que obras,<br>entregamos soluções que<br>geram resultados.
-            </h2>
-
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-6">
-                <div class="flex flex-col gap-2">
-                    <i class="ph ph-users text-3xl text-[#a3b89b]"></i>
-                    <p class="text-xs font-semibold">Equipe própria<br>e especializada</p>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <i class="ph ph-gear text-3xl text-[#a3b89b]"></i>
-                    <p class="text-xs font-semibold">Tecnologia e<br>métodos eficientes</p>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <i class="ph ph-handshake text-3xl text-[#a3b89b]"></i>
-                    <p class="text-xs font-semibold">Fornecedores<br>certificados</p>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <i class="ph ph-clock text-3xl text-[#a3b89b]"></i>
-                    <p class="text-xs font-semibold">Prazos e custos<br>sob controle</p>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <i class="ph ph-medal text-3xl text-[#a3b89b]"></i>
-                    <p class="text-xs font-semibold">Qualidade em<br>cada etapa</p>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <i class="ph ph-shield-check text-3xl text-[#a3b89b]"></i>
-                    <p class="text-xs font-semibold">Garantia de<br>entrega</p>
-                </div>
-            </div>
-        </div>
-        <!-- Right Side -->
-        <div class="w-full md:w-1/2 min-h-[400px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&w=1000&q=80');">
-        </div>
-    </section>
-
-    <!-- PRE-FOOTER CTA -->
-    <section class="bg-[#f7f8f6] py-12 border-b border-gray-200">
-        <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-6">
-                <div class="w-16 h-16 bg-white shadow-sm rounded-md flex items-center justify-center flex-shrink-0">
-                    <i class="ph ph-buildings text-3xl text-brand"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">Vamos construir o próximo grande ambiente da sua empresa?</h3>
-                    <p class="text-sm text-gray-500">Fale com um especialista e descubra como o modelo Turnkey pode transformar seu projeto em resultado.</p>
-                </div>
-            </div>
-            <div>
-                <a href="#" class="inline-flex items-center gap-2 bg-[#465b3c] hover:bg-[#384830] transition text-white text-sm font-bold py-4 px-8 rounded-sm uppercase tracking-wide whitespace-nowrap">
-                    <i class="ph ph-whatsapp text-xl"></i> Fale no WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-[#1b2118] text-gray-300 py-16">
-        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-            
-            <!-- Brand Column -->
-            <div class="lg:col-span-1">
-                <div class="flex items-center gap-2 mb-6">
-                    <i class="ph ph-buildings text-3xl text-brand-light"></i>
-                    <div class="flex flex-col">
-                        <span class="text-xl font-bold leading-tight text-white tracking-tight">EngOffice</span>
-                        <span class="text-[8px] font-semibold text-gray-400 tracking-widest uppercase">Ambientes Corporativos</span>
-                    </div>
-                </div>
-                <p class="text-xs text-gray-400 mb-6 leading-relaxed">
-                    Soluções Turnkey em ambientes corporativos que unem design, funcionalidade e eficiência em cada entrega.
-                </p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="ph ph-linkedin-logo text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="ph ph-instagram-logo text-xl"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="ph ph-youtube-logo text-xl"></i></a>
-                </div>
-            </div>
-
-            <!-- Navegação -->
-            <div>
-                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-6">Navegação</h4>
-                <ul class="text-xs space-y-3 text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">Início</a></li>
-                    <li><a href="#" class="hover:text-white transition">Obras Corporativas</a></li>
-                    <li><a href="#" class="hover:text-white transition">Soluções</a></li>
-                    <li><a href="#" class="hover:text-white transition">Projetos</a></li>
-                    <li><a href="#" class="hover:text-white transition">Catálogo</a></li>
-                    <li><a href="#" class="hover:text-white transition">Quem Somos</a></li>
-                    <li><a href="#" class="hover:text-white transition">Contato</a></li>
-                </ul>
-            </div>
-
-            <!-- Soluções -->
-            <div>
-                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-6">Soluções</h4>
-                <ul class="text-xs space-y-3 text-gray-400">
-                    <li><a href="#" class="hover:text-white transition">Escritórios Corporativos</a></li>
-                    <li><a href="#" class="hover:text-white transition">Salas de Reunião</a></li>
-                    <li><a href="#" class="hover:text-white transition">Auditórios</a></li>
-                    <li><a href="#" class="hover:text-white transition">Áreas de Colaboração</a></li>
-                    <li><a href="#" class="hover:text-white transition">Recepções</a></li>
-                </ul>
-            </div>
-
-            <!-- Atendimento -->
-            <div class="lg:col-span-1">
-                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-6">Atendimento</h4>
-                <ul class="text-xs space-y-4 text-gray-400">
-                    <li class="flex items-start gap-3">
-                        <i class="ph ph-whatsapp-logo text-brand-light text-base mt-0.5"></i>
-                        <span>(11) 99999-9999</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="ph ph-envelope-simple text-brand-light text-base mt-0.5"></i>
-                        <span>contato@engoffice.com.br</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i class="ph ph-clock text-brand-light text-base mt-0.5"></i>
-                        <span>Segunda a Sexta, das 08h às 18h</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Map -->
-            <div class="flex items-center gap-4 lg:justify-end">
-                <i class="ph ph-map-trifold text-5xl text-brand-light opacity-50"></i>
-                <div class="text-xs">
-                    <span class="block text-gray-400">Atendemos</span>
-                    <strong class="text-white">todo o Brasil</strong>
-                </div>
-            </div>
-        </div>
-
-        <div class="max-w-[1400px] mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-center text-[10px] text-gray-500">
-            <p>&copy; 2024 EngOffice Ambientes Corporativos. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*0.07)+'s';io.observe(el);});
+</script>
 </body>
 </html>
